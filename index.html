@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- importando os estilos do Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Reserva de Hotel</title>
+  </head>
+  <body>
+    <!-- implementando a barra superior de navegação -->
+    <header>
+      <img
+        class="logo"
+        src="./img/logo_v1.0_transparent.svg"
+        alt="Kad Hotel Logo"
+      />
+      <ul>
+        <li><a href="">Sobre</a></li>
+        <li><a href="">Pacotes</a></li>
+        <li>
+          <a href="">
+            <img src="./img/user_white.svg" alt="Kad hotel logo" />
+            Entrar
+          </a>
+        </li>
+      </ul>
+    </header>
+
+    <main>
+      <!-- implementando a imagem de fundo principal da página -->
+      <div class="carousel modal-trigger">
+        <button type="button" data-toggle="modal" data-target="#staticBackdrop">
+          Quero reservar!
+          <img src="./img/search_white.svg" alt="book a room" />
+        </button>
+      </div>
+
+      <!-- implementando o formulário de cadastro do cliente -->
+      <!-- Modal Structure -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+          <!-- definindo o cabeçalho do formulário de cadastro -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">
+                Formulário de Reserva
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="alert alert-warning" role="alert" hidden>
+              Por favor confira os dados e tente novamente!
+            </div>
+            <div class="alert alert-success" role="alert" hidden>
+              Sua reserva foi realizada!
+            </div>
+
+            <!-- implementando os campos do formulário de reserva -->
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="name">Nome</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Emili Silva"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="email">E-mail</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="emilisilva@mail.com"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="cpf">CPF</label>
+                    <input
+                      type="number"
+                      id="cpf"
+                      name="cpf"
+                      class="form-control"
+                      placeholder="Digite apenas os números"
+                      maxlength="11"
+                      minlength="11"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="rg">RG</label>
+                    <input
+                      type="number"
+                      id="rg"
+                      name="rg"
+                      class="form-control"
+                      placeholder="Digite apenas os números"
+                      maxlength="10"
+                      minlength="7"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="phone">Telefone Fixo</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      class="form-control"
+                      placeholder="2733333333"
+                      maxlength="10"
+                      minlength="10"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="cellphone">Celular</label>
+                    <input
+                      type="text"
+                      id="cellphone"
+                      name="cellphone"
+                      class="form-control"
+                      placeholder="27999999999"
+                      maxlength="11"
+                      minlength="11"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="marital_status">Estado Civil</label>
+                    <select id="marital_status" name="marital_status" class="form-control" required>
+                      <option value="Solteiro(a)" selected>Solteiro(a)</option>
+                      <option value="Casado(a)">Casado(a)</option>
+                      <option value="União Estável">União Estável</option>
+                      <option value="Divorciado(a)">Divorciado(a)</option>
+                      <option value="Separado(a)">Separado(a)</option>
+                    </select>
+                  </div>
+                  <div class="form-group col">
+                    <label for="birth">Data de Nascimento</label>
+                    <input
+                      type="date"
+                      id="birth"
+                      name="birth"
+                      class="form-control"
+                      placeholder="27999999999"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="street">Logradouro</label>
+                    <input
+                      type="text"
+                      id="street"
+                      name="street"
+                      class="form-control"
+                      placeholder="Rua dos Viajantes"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="number">Número</label>
+                    <input
+                      type="text"
+                      id="number"
+                      name="number"
+                      class="form-control"
+                      placeholder="7"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="complement">Complemento</label>
+                    <input
+                      type="text"
+                      id="complement"
+                      name="complement"
+                      class="form-control"
+                      placeholder="Quadra 17"
+                    />
+                  </div>
+                  <div class="form-group col">
+                    <label for="neighborhood">Bairro</label>
+                    <input
+                      type="text"
+                      id="neighborhood"
+                      name="neighborhood"
+                      class="form-control"
+                      placeholder="Centro"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="city">Cidade</label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      class="form-control"
+                      placeholder="Vitória"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="state">Estado</label>
+                    <select id="state" name="state" class="form-control" required>
+                      <option>Acre</option>
+                      <option>Alagoas</option>
+                      <option>Amapá</option>
+                      <option>Amazonas</option>
+                      <option>Bahia</option>
+                      <option>Ceará</option>
+                      <option>Distrito Federal</option>
+                      <option selected>Espírito Santo</option>
+                      <option>Goiás</option>
+                      <option>Maranhão</option>
+                      <option>Mato Grosso</option>
+                      <option>Mato Grosso do Sul</option>
+                      <option>Minas Gerais</option>
+                      <option>Pará</option>
+                      <option>Paraíba</option>
+                      <option>Paraná</option>
+                      <option>Pernambuco</option>
+                      <option>Piauí</option>
+                      <option>Rio de Janeiro</option>
+                      <option>Rio Grande do Norte</option>
+                      <option>Rio Grande do Sul</option>
+                      <option>Rondônia</option>
+                      <option>Roraima</option>
+                      <option>Santa Catarina</option>
+                      <option>São Paulo</option>
+                      <option>Sergipe</option>
+                      <option>Tocantins</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="zip_code">CEP</label>
+                    <input
+                      type="text"
+                      id="zip_code"
+                      name="zip_code"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-8">
+                    <label for="room_type">Quarto</label>
+                    <select
+                      id="room_type"
+                      name="room_type"
+                      class="form-control"
+                      required
+                    >
+                      <option
+                        value="standard"
+                        >Standard (Cama solteiro, ar, frigobar, WiFi, TV a
+                        cabo)</option
+                      >
+                      <option
+                        value="plus"
+                        >Plus (Cama casal, ar, frigobar, WiFi, SmarTV e
+                        banheira)</option
+                      >
+                      <option
+                      value="master"
+                        >Master (Cama casal, ar, frigobar, WiFi, SmarTV, Jacuzzi
+                        e WineClub)</option
+                      >
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="room_price">Valor da diária</label>
+                    <input
+                      type="text"
+                      id="room_price"
+                      name="room_price"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="payment_method">Forma de Pagamento</label>
+                    <select
+                      id="payment_method"
+                      name="payment_method"
+                      class="form-control"
+                      required
+                    >
+                      <option>Visa</option>
+                      <option>Mastercard</option>
+                      <option>American Express</option>
+                      <option selected>Boleto</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="checkin">Data de Entrada</label>
+                    <input
+                      type="date"
+                      id="checkin"
+                      name="checkin"
+                      class="form-control"
+                      
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="checkout">Data de Saída</label>
+                    <input
+                      type="date"
+                      id="checkout"
+                      name="checkout"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="book_total">Total</label>
+                    <input
+                      type="text"
+                      id="book_total"
+                      name="book_total"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="client_message">Mensagem</label>
+                    <textarea
+                      id="client_message"
+                      name="client_message"
+                      class="form-control"
+                      placeholder="Pedidos, sugestões e/ou observações"
+                      rows="5"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-2">
+                    <button type="submit" id="submit_button" class="from-group btn btn-success">Reservar!</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- implementando o componente de descrição do hotel -->
+      <section>
+        <div>
+          <h2>Kad Hotel</h2>
+          <p>
+            O Kad Hotel proporciona aos seus hóspedes uma experiência completa
+            de lazer, descanso e diversão, perfeito para a família.
+          </p>
+          <p>
+            Está localizado em Guarapari, a cidade litorânea mais visitada do ES
+            e um dos principais pontos turísticos do Brasil.
+          </p>
+          <button>
+            Exibir no mapa
+            <img src="./img/compass_white.svg" alt="view on map" />
+          </button>
+        </div>
+        <img src="./img/hotel_2.jpg" alt="kad hotel" />
+      </section>
+
+      <!-- implementando a seção acerca dos recursos do hotel -->
+      <section>
+        <img src="./img/room_3.jpg" alt="kad hotel" />
+        <div>
+          <h2>Todos os recursos de um paraíso</h2>
+          <p>
+            O hotel conta com 93 apartamentos de diferentes categorias, todos contemplados com uma belíssima vista para a praia e equipados com wifi, canais a cabo, frigobar, ar condicionado, SmartTV, jacuzzi e para os hóspedes da suíte Master, há a possibilidade de degustação de vinhos através do "WineClub".
+          </p>
+          <p>
+            Nosso restaurante todos os dias serve comidas típicas de todo Brasil, sem faltar, é claro, o melhor da culinária capixaba.
+          </p>
+          <button>
+            Nossa estrutura
+            <img src="./img/house_white.svg" alt="view our resources" />
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <img
+        class="footer-logo"
+        src="./img/logo_v1.1_transparent.svg"
+        alt="kad hotel logo"
+      />
+      <p>contato@kadhotel.com.br</p>
+      <p>+55 27 3999-3999 | +55 27 9 8888-9999</p>
+      <p>Avenida dos Viajantes, 77, Guarapari - ES</p>
+      <div>
+        <a href="#"><img src="./img/facebook.svg" alt="facebook" /></a>
+        <a href="#"><img src="./img/instagram.svg" alt="instagram" /></a>
+        <a href="#"><img src="./img/twitter.svg" alt="twitter" /></a>
+      </div>
+      <div class="made-with-love">
+        <p>
+          Made with
+          <img src="./img/heart_red.svg" alt="made by carloscarrinho" />
+          by
+          <a href="https://www.github.com/carloscarrinho">@carloscarrinho</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- importando os scripts do Bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- importando os scripts de Validação -->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
