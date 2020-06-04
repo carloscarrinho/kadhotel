@@ -46,3 +46,13 @@ Além de construir a página web do hotel que deve ter um form, implementar as s
 (✓) 4. Usar CSS/style (arquivo regras.css) para customizar a página.
 
 ## Saídas
+
+[Imagem 1](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_1.png)
+
+[Imagem 2](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_2.png)
+
+[Imagem 3](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_3.png)
+
+[Gif 1](https://github.com/carloscarrinho/kadhotel/blob/master/img/gif_1.png)
+
+[Imagem 4](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_4.png)
