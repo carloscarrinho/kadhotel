@@ -69,7 +69,7 @@ header ul li a img {
 }
 
 /* implementando imagem de fundo principal da página */
-.carousel {
+.main-section {
   height: 85vh;
   width: 100%;
   background-color: springgreen;
@@ -81,7 +81,7 @@ header ul li a img {
   justify-content: center;
 }
 
-.carousel button {
+.main-section button {
   margin-top: 300px;
   background-color: rgba(0, 0, 0, 0.75);
   color: #fff;
@@ -97,38 +97,38 @@ header ul li a img {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-.carousel button img {
+.main-section button img {
   margin-left: 25px;
 }
-.carousel button:hover {
+.main-section button:hover {
   background-color: #000;
   text-decoration: none;
 }
 
 /* implementando estilos referentes a seção de descrição do hotel */
-section {
+.standard_section {
   display: flex;
   align-items: initial;
   justify-content: space-around;
   padding: 50px 0;
   background-color: #eee;
 }
-section div {
+.standard_div {
   width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-section div h2 {
+.standard_div h2 {
   font-size: 2.5em;
   text-align: center;
   margin-bottom: 25px;
 }
-section div p {
+.standard_div p {
   text-align: justify;
   line-height: 2em;
 }
-section div button {
+.standard_div button {
   margin-top: 50px;
   width: 225px;
   background-color: #000;
@@ -143,14 +143,14 @@ section div button {
   justify-content: space-between;
   transition: background-color 0.2s;
 }
-section div button:hover {
+.standard_div button:hover {
   background-color: #222;
   cursor: pointer;
 }
-section div button img {
+.standard_div button img {
   height: 30px;
 }
-section img {
+.standard_section img {
   height: 420px;
 }
 
@@ -192,4 +192,26 @@ footer div a {
 }
 
 /* classes personalizadas para utilização com o Bootstrap */
+.bootstrap_section {
+  margin: 50px auto;
+}
 
+.bootstrap_section h2 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.rooms {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.rooms_carousel {
+  width: 60%;
+}
+
+.rooms_carousel img {
+  height: 475px;
+}
