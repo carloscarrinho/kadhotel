@@ -47,12 +47,22 @@ Além de construir a página web do hotel que deve ter um form, implementar as s
 
 ## Saídas
 
-[Imagem 1](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_1.png)
+### Topo do site
+![Topo do site](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_1.png)
 
-[Imagem 2](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_2.png)
+### Seções sobre os recursos do hotel
+![Seções do site](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_2.png)
 
-[Imagem 3](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_3.png)
+![Seções do site 2](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_3.png)
 
-[Gif 1](https://github.com/carloscarrinho/kadhotel/blob/master/img/gif_1.png)
+### Carousel dos quartos
+![Carousel de quartos](https://github.com/carloscarrinho/kadhotel/blob/master/img/gif_1.png)
 
-[Imagem 4](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_4.png)
+### Rodapé da página com informações sobre o hotel
+![Imagem do rodapé](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_4.png)
+
+### Ativando o formulário e validação dos campos
+![Ativando o formulário](https://github.com/carloscarrinho/kadhotel/blob/master/img/gif_2.png)
+
+### Campos de diária e valor total dinâmicos e mensagem de confirmação ao usuário
+![Submetendo o formulário](https://github.com/carloscarrinho/kadhotel/blob/master/img/gif_3.png)
