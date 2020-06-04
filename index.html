@@ -70,16 +70,13 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="alert alert-warning" role="alert" hidden>
-              Por favor confira os dados e tente novamente!
-            </div>
-            <div class="alert alert-success" role="alert" hidden>
-              Sua reserva foi realizada!
+            <div id="msg-alert">
+              
             </div>
 
             <!-- implementando os campos do formulário de reserva -->
             <div class="modal-body">
-              <form>
+              <form id="reservation_form">
                 <div class="row">
                   <div class="form-group col">
                     <label for="name">Nome</label>
@@ -280,6 +277,7 @@
                       id="zip_code"
                       name="zip_code"
                       class="form-control"
+                      placeholder="Apenas números"
                       required
                     />
                   </div>
@@ -454,7 +452,7 @@
           Made with
           <img src="./img/heart_red.svg" alt="made by carloscarrinho" />
           by
-          <a href="https://www.github.com/carloscarrinho">@carloscarrinho</a>
+          <a href="https://www.github.com/carloscarrinho" target="_blank">@carloscarrinho</a>
         </p>
       </div>
     </footer>

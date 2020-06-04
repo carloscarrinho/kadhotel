@@ -44,5 +44,3 @@ Além de construir a página web do hotel que deve ter um form, implementar as s
 (✓) 3. Fazer uma função javascript  (arquivo validacoes.js) para computar valor total da diária em função de quantos dias o hóspede irá ficar hospedado. Atribuir para o campo valor total o valor computado pela função. A função deve se chamar computaValorDaEstadia.
 
 (✓) 4. Usar CSS/style (arquivo regras.css) para customizar a página.
-
-[ ] Configurar mensagens de alerta para o usuário no front.

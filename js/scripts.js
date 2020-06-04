@@ -3,6 +3,7 @@
  * (variáveis globais)
  */
 // Campos do formulário de reserva
+let form = null;
 let name = null;
 let email = null;
 let cpf = null;
@@ -30,8 +31,7 @@ let clientMessage = null;
 let submitButton = null;
 
 // alertas para o usuário
-let warningAlert = null;
-let successAlert = null;
+let divAlert = null;
 
 // preços e valores
 let standardPrice = 120;
@@ -41,7 +41,7 @@ let currentPrice = 0;
 let reservationTotal = 0;
 
 // número de dias da estadia
-let day = 0;
+let day = null;
 
 /**
  * Implementando a validação do formulário de reserva
@@ -50,6 +50,7 @@ let day = 0;
 // função que carrega os elementos e monitora a mudança de estado no formulário
 window.addEventListener("load", () => {
   // montando o estado da aplicação (carregando os campos do formulário)
+  form = document.querySelector('#reservation_form');
   name = document.querySelector("#name");
   email = document.querySelector("#email");
   cpf = document.querySelector("#cpf");
@@ -73,11 +74,11 @@ window.addEventListener("load", () => {
   checkout = document.querySelector("#checkout");
   clientMessage = document.querySelector("#client_message");
   submitButton = document.querySelector("#submit_button");
-  warningAlert = document.querySelector(".alert-warning");
-  successAlert = document.querySelector(".alert-success");
-
+  divAlert = document.querySelector('#msg-alert');
+  days = 1;
+  
   // atualizando o valor do campo 'Valor da diária'
-  showRoomPrice(roomType);
+  showRoomPrice();
 
   // estabelecendo data mínima para checkin
   setMinDateForCheckin();
@@ -85,6 +86,11 @@ window.addEventListener("load", () => {
   // monitorando e atualizando o total da reserva com base no número total de dias da estadia
   checkout.addEventListener('change', () => {
     countDays();
+    computaValorDaEstadia();
+  });
+
+  // monitorando e atualizando o total da reserva com base no valor da diária
+  roomType.addEventListener('change', () => {
     computaValorDaEstadia();
   });
 
@@ -97,100 +103,133 @@ function registerUser(event) {
   // desabilitando o carregamento da página após o clique no botão de submit
   event.preventDefault();
 
-  // validateEmail(email.value);
-  // validateBirth(birth.value);
-  // validateCpf(cpf.value);
-  // validateRg(rg.value);
-  // validatePhone(phone.value);
-  // validateCellphone(cellphone.value);
-  // validateZipCode(zipCode.value);
-  // validaDataSaida(checkin.value, checkout.value);
+  // validando campos
+  let mailIsValid = validateEmail(email);
+  let cpfIsValid = validateCpf(cpf);
+  let rgIsValid = validateRg(rg);
+  let phoneIsValid = validatePhone(phone);
+  let cellphoneIsValid = validateCellphone(cellphone);
+  let birthIsValid = validateBirth(birth);
+  let zipcodeIsValid = validateZipCode(zipCode);
+  let checkoutIsValid = validaDataSaida(checkin, checkout);
+  
+  if(
+    mailIsValid &&
+    cpfIsValid &&
+    rgIsValid &&
+    phoneIsValid &&
+    cellphoneIsValid &&
+    birthIsValid &&
+    zipcodeIsValid &&
+    checkoutIsValid
+  ) {
+    catchUserData();
+    showMsg("success");
+  } else {
+    return;
+  }
+  // capturando dados do formulário e imprimindo no console
 }
 
 // função que apresenta mensagem de retorno para usuário
-function showMsg(type, field = "") {
-  if (type === "success") {
-    console.log("Sua reserva foi realizada com sucesso!");
-    successAlert.removeAttribute("hidden");
-    warningAlert.setAttribute("hidden", "true");
+function showMsg(type, field = null, nameField = "") {
+  let box = document.createElement('div');
+  box.setAttribute('role', 'alert');
+  if(type === "error") {
+    box.classList.add('alert', 'alert-warning');
+    box.innerHTML = `Por favor, preencha corretamente o campo "${nameField}"!`;
+    divAlert.appendChild(box);
+    field.focus();
+    setInterval(() => {
+      divAlert.innerHTML = "";
+    }, 5000);
   } else {
-    console.log(`Por favor, preencha corretamente o campo ${field}`);
-    warningAlert.removeAttribute("hidden");
-    successAlert.setAttribute("hidden", "true");
+    box.classList.add('alert', 'alert-success');
+    box.innerHTML = "Reserva efetuada com sucesso, até breve!"
+    divAlert.appendChild(box);
+    form.reset();
+    setInterval(() => {
+      divAlert.innerHTML = "";
+    }, 5000);
   }
 }
 
 // função que realiza a validação de email com Regex
-function validateEmail(string) {
+function validateEmail(field) {
   let mailRegex = /[a-z]{2,}@[a-z]{3,}.[a-z]{3}(.[a-z]+)?/;
-  let isValid = mailRegex.test(string);
-
+  let isValid = mailRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "e-mail");
+    showMsg("error", field, "e-mail");
+    return isValid;
   }
-  // return showMsg('success');
+  return isValid;
 }
 
 // função que realiza a validação de CPF com Regex
-function validateCpf(number) {
+function validateCpf(field) {
   let cpfRegex = /[0-9]{11}/;
-  let isValid = cpfRegex.test(number);
-
+  let isValid = cpfRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "CPF");
+    showMsg("error", field, "CPF");
+    return isValid;
   }
+  return isValid;
 }
 
 // função que realiza a validação de RG com Regex
-function validateRg(number) {
+function validateRg(field) {
   let rgRegex = /[0-9]{7,10}/;
-  let isValid = rgRegex.test(number);
-
+  let isValid = rgRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "RG");
+    showMsg("error", field, "RG");
+    return isValid;
   }
+  return isValid;
 }
 
 // função que realiza a validação do Telefone Fixo com Regex
-function validatePhone(number) {
-  let phoneRegex = /[1-9]{10}/;
-  let isValid = phoneRegex.test(number);
-
+function validatePhone(field) {
+  let phoneRegex = /[1-9][0-9]{9}/;
+  let isValid = phoneRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "Telefone Fixo");
+    showMsg("error", field, "Telefone Fixo");
+    return isValid;
   }
+  return isValid;
 }
 
 // função que realiza a validação do Celular com Regex
-function validateCellphone(number) {
-  let cellphoneRegex = /[1-9]{11}/;
-  let isValid = cellphoneRegex.test(number);
-
+function validateCellphone(field) {
+  let cellphoneRegex = /[1-9][0-9]{10}/;
+  let isValid = cellphoneRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "Celular");
+    showMsg("error", field, "Celular");
+    return isValid;
   }
+  return isValid;
 }
 
 // função que valida se o usuário está tentando enviar data de nascimento no futuro
-function validateBirth(date) {
-  let userBirthday = Date.parse(date);
+function validateBirth(field) {
+  let userBirthday = Date.parse(field.value);
   let today = Date.now();
-  if(userBirthday >= today ) {
-    showMsg('error', 'Data de Nascimento');
-    return;
+  let isValid = today > userBirthday;  
+  if(!isValid) {
+    showMsg('error', field, 'Data de Nascimento');
+    return isValid;
   }
-  return;
+  return isValid;
 }
 
 // função que realiza a validação do CEP com Regex
-function validateZipCode(number) {
+function validateZipCode(field) {
   let zipCodeRegex = /[1-9]{5}\d{3}/;
-  let isValid = zipCodeRegex.test(number);
-
+  let isValid = zipCodeRegex.test(field.value);
   if (!isValid) {
-    return showMsg("error", "CEP");
+    showMsg("error", field, "CEP");
+    return isValid;
   }
-  return showMsg("success");
+  return isValid;
 }
 
 // função que formata a moeda para o padrão Brasileiro
@@ -202,15 +241,14 @@ function formatNumber(number) {
 }
 
 // função que apresenta o valor da diária conforme escolha do tipo de quarto
-function showRoomPrice(roomTypeElement) {
+function showRoomPrice() {
   currentPrice = standardPrice;
   roomPrice.value = formatNumber(currentPrice);
-  
-  roomTypeElement.addEventListener("change", () => {
-    if (roomTypeElement.value === "standard") {
+  roomType.addEventListener("change", () => {
+    if (roomType.value === "standard") {
       currentPrice = standardPrice;
       roomPrice.value = formatNumber(currentPrice);
-    } else if (roomTypeElement.value === "plus") {
+    } else if (roomType.value === "plus") {
       currentPrice = plusPrice;
       roomPrice.value = formatNumber(currentPrice);
     } else {
@@ -234,13 +272,14 @@ function setMinDateForCheckin() {
 
 // função que verifica se a data de entrada é posterior a data de saída
 function validaDataSaida(checkin, checkout) {
-  let checkinDate = Date.parse(checkin);
-  let checkoutDate = Date.parse(checkout);
-  if(checkinDate > checkoutDate) {
-    showMsg('error', 'Data de Saída');
-    return;
+  let checkinDate = Date.parse(checkin.value);
+  let checkoutDate = Date.parse(checkout.value);
+  let isValid = checkoutDate > checkinDate;
+  if(!isValid) {
+    showMsg('error', checkout, 'Data de Saída');
+    return isValid;
   }
-  return;
+  return isValid;
 }
 
 function countDays() { 
@@ -252,5 +291,46 @@ function countDays() {
 
 function computaValorDaEstadia() {
   reservationTotal = days * currentPrice;
+  if(reservationTotal <= 0){
+    bookTotal.value = "Erro na data";
+    return;
+  }
   bookTotal.value = formatNumber(reservationTotal);
+}
+
+// função que armazena os dados enviados em um objeto
+function catchUserData() {
+  let user = {
+    // gerando um id aleatório entre 0 e 1000
+    id: Math.floor(Math.random() * 1000),
+    // capturando os valores atuais dos campos
+    name: name.value,
+    email: email.value,
+    cpf: cpf.value,
+    rg: rg.value,
+    phone: phone.value,
+    cellphone: cellphone.value,
+    marital_status: maritalStatus.value,
+    birth: birth.value,
+    street: street.value,
+    number: number.value,
+    complement: complement.value,
+    neighborhood: neighborhood.value,
+    city: city.value,
+    state: state.value,
+    zip_code: zipCode.value,
+    room_type: roomType.value,
+    payment_method: paymentMethod.value,
+    checkin: checkin.value,
+    checkout: checkout.value,
+    days_quantity: days,
+    total_price: reservationTotal,
+    client_message: clientMessage.value,
+  }
+  console.log(user);
+}
+
+// função que limpa o formulário
+function formClear() {
+  
 }
