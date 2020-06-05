@@ -95,7 +95,7 @@ window.addEventListener("load", () => {
   });
 
   // monitorando envio do formulário
-  submitButton.addEventListener("click", registerUser);
+  form.addEventListener("submit", registerUser);
 });
 
 // função que chama as validações dos campos e realiza o registro do hóspede
