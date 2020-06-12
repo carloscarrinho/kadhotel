@@ -47,6 +47,10 @@ Além de construir a página web do hotel que deve ter um form, implementar as s
 
 ## Saídas
 
+### Visão Geral
+
+![Visão geral](https://github.com/carloscarrinho/kadhotel/blob/master/img/overview_kadhotel.gif)
+
 ### Topo do site
 ![Topo do site](https://github.com/carloscarrinho/kadhotel/blob/master/img/img_1.png)
 
